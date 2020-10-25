@@ -1,7 +1,12 @@
 package com.mygdx.game;
 
-import java.util.Scanner;
+/**
+ * Mikala Spencer
+ * 2020-10-24
+ * This program mvoes the camera around an image, rotates, and shakes.
+ */
 
+import java.util.Scanner;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
@@ -116,6 +121,7 @@ class CameraShake extends CameraEffect
 		{
 			if (progress % speed == 0)
 			{
+				// Dappens the intensity to have it close in as it shakes
 				intensity = intensity * (1-((float)progress/duration));
 				intensity = -intensity;
 				cam.translate(10*intensity,10*intensity);
@@ -192,7 +198,7 @@ class InputHandler extends InputAdapter
 		else
 		{
 			// Prints out the coordinates of the mouse when click & dragging
-			System.out.printf("You are at (%d, %d)\n", screenX,screenY);
+			//System.out.printf("You are at (%d, %d)\n", screenX,screenY);
 			
 			// Pans the camera away from the image
 			cam.position.x = startCam.x + diffX;
@@ -258,7 +264,7 @@ public class AdvancedInputHandling extends ApplicationAdapter
 		// Get user input for the speed
 		Scanner sc = new Scanner(System.in);
 		int speedPercent;
-		// The lower the number, the faster the speed
+		// The lower the number, the slower the speed and vice versa
 		System.out.print("What Speed?(0-100) ");
 		speedPercent = sc.nextInt();
 		shaker = new CameraShake(cam, 500, batch, null, 10, speedPercent);
